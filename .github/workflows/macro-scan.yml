@@ -1,0 +1,36 @@
+name: macro-scan
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install oletools
+        run: pip install oletools
+
+      - name: Show macro code and indicators (information only)
+        run: olevba documents/*.xlsm
+
+      - name: Block suspicious macros (mraptor)
+        run: |
+          fail=0
+          for f in documents/*.xlsm; do
+            mraptor "$f"
+            rc=$?
+            echo "$f -> mraptor exit code $rc"
+            if [ $rc -ge 10 ]; then fail=1; fi
+          done
+          exit $fail

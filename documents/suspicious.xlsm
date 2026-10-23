@@ -1,0 +1,3 @@
+Private Sub Workbook_Open()
+    Shell "notepad.exe"
+End Sub
