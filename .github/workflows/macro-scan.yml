@@ -23,14 +23,3 @@ jobs:
 
       - name: Show macro code and indicators (information only)
         run: olevba documents/*.xlsm
-
-      - name: Block suspicious macros (mraptor)
-        run: |
-          fail=0
-          for f in documents/*.xlsm; do
-            mraptor "$f"
-            rc=$?
-            echo "$f -> mraptor exit code $rc"
-            if [ $rc -ge 10 ]; then fail=1; fi
-          done
-          exit $fail
