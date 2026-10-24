@@ -1,5 +1,7 @@
 # Progress Notes
 
+A dated log of what I built, what I learned
+
 ## Sat 24 Oct 2026
 
 - Created the repo
