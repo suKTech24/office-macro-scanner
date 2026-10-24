@@ -1,1 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Office lock files (created while a document is open)
+~$*
+
+# Archived
 docs/archive
