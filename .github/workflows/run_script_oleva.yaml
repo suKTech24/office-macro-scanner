@@ -18,7 +18,14 @@ jobs:
           python -m venv .venv
           . .venv/bin/activate
           pip install -r requirements.txt
-      - name: Run inspect_vbaproject script
+      - name: Run run_olevba.py script
         run: |
           . .venv/bin/activate
           python scripts_experiments/run_olevba.py samples/documents
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Run run_olevba.py script"
+          git push
