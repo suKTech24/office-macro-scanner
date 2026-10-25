@@ -1,0 +1,78 @@
+olevba 0.60.2 on Python 3.14.8 - http://decalage.info/python/oletools
+===============================================================================
+FILE: suspicious.xlsm
+Type: OpenXML
+WARNING  For now, VBA stomping cannot be detected for files in memory
+-------------------------------------------------------------------------------
+VBA MACRO ModLooksBad_OpenNotepad.bas 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/ModLooksBad_OpenNotepad'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Option Explicit
+
+   ' TEST SAMPLE. Looks suspicious to scanners. Does nothing harmful.
+   ' Workbook_Open is an auto-run trigger (T1204.002): Excel calls it when the file opens.
+   Private Sub Workbook_Open()
+       MsgBox "Test sample opened. No action taken."
+   End Sub
+   
+Option Explicit
+
+   ' TEST SAMPLE. Never called from anywhere, and wrapped in If False,
+   ' so none of these lines can run. They exist only so static scanners see them.
+   Private Sub NeverCalled()
+       If False Then ' False, therefore it will never be executed
+           Dim sh As Object
+           ' T1559.001 COM (Component Object Model) object + T1059 command execution
+           Set sh = CreateObject("WScript.Shell")
+           sh.Run "notepad.exe"
+           Shell "cmd.exe /c echo test"
+
+           ' T1027 obfuscation: Chr() chain that spells "calc"
+           Debug.Print Chr(99) & Chr(97) & Chr(108) & Chr(99)
+
+           ' T1027 obfuscation: Base64 for "This is a test"
+           Debug.Print "VGhpcyBpcyBhIHRlc3Q="
+
+           ' T1105 indicator: a URL. .invalid is a reserved domain that can never resolve.
+           Debug.Print "http://example.invalid/payload.txt"
+       End If
+   End Sub
+
+-------------------------------------------------------------------------------
+VBA MACRO ThisWorkbook.cls 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/ThisWorkbook'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(empty macro)
+-------------------------------------------------------------------------------
+VBA MACRO Sheet1.cls 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/Sheet1'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(empty macro)
++----------+--------------------+---------------------------------------------+
+|Type      |Keyword             |Description                                  |
++----------+--------------------+---------------------------------------------+
+|AutoExec  |Workbook_Open       |Runs when the Excel Workbook is opened       |
+|Suspicious|Shell               |May run an executable file or a system       |
+|          |                    |command                                      |
+|Suspicious|WScript.Shell       |May run an executable file or a system       |
+|          |                    |command                                      |
+|Suspicious|run                 |May run an executable file or a system       |
+|          |                    |command                                      |
+|Suspicious|command             |May run PowerShell commands                  |
+|Suspicious|CreateObject        |May create an OLE object                     |
+|Suspicious|Chr                 |May attempt to obfuscate specific strings    |
+|          |                    |(use option --deobf to deobfuscate)          |
+|Suspicious|Hex Strings         |Hex-encoded strings were detected, may be    |
+|          |                    |used to obfuscate strings (option --decode to|
+|          |                    |see all)                                     |
+|Suspicious|Base64 Strings      |Base64-encoded strings were detected, may be |
+|          |                    |used to obfuscate strings (option --decode to|
+|          |                    |see all)                                     |
+|IOC       |http://example.inval|URL                                          |
+|          |id/payload.txt      |                                             |
+|IOC       |notepad.exe         |Executable file name                         |
+|IOC       |cmd.exe             |Executable file name                         |
+|Base64    |This is a test      |VGhpcyBpcyBhIHRlc3Q=                         |
+|String    |                    |                                             |
++----------+--------------------+---------------------------------------------+
+
