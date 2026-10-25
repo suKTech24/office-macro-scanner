@@ -1,0 +1,48 @@
+olevba 0.60.2 on Python 3.14.8 - http://decalage.info/python/oletools
+===============================================================================
+FILE: clean.xlsm
+Type: OpenXML
+WARNING  For now, VBA stomping cannot be detected for files in memory
+-------------------------------------------------------------------------------
+VBA MACRO ThisWorkbook.cls 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/ThisWorkbook'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(empty macro)
+-------------------------------------------------------------------------------
+VBA MACRO Sheet1.cls 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/Sheet1'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(empty macro)
+-------------------------------------------------------------------------------
+VBA MACRO ModGst.bas 
+in file: xl/vbaProject.bin - OLE stream: 'VBA/ModGst'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Option Explicit
+
+' Clean test sample: Australian GST (10%) helpers. Shows a message and does calculations. Nothing else.
+Public Sub ShowGstExample()
+    MsgBox "A $100.00 price excluding GST is " & Format(priceIncludingGst(100), "$0.00") & " including GST."
+End Sub
+
+' GST-exclusive price -> GST-inclusive price. =PriceIncludingGst(100) gives 110.
+Public Function priceIncludingGst(ByVal priceExcludingGst As Double, _
+                                  Optional ByVal gstRate As Double = 0.1) As Double
+    priceIncludingGst = Round(priceExcludingGst * (1 + gstRate), 2)
+End Function
+
+' GST contained in a GST-inclusive price (one eleventh at 10%). =GstIncludedInPrice(110) gives 10.
+Public Function GstIncludedInPrice(ByVal priceIncludingGst As Double, _
+                                   Optional ByVal gstRate As Double = 0.1) As Double
+    GstIncludedInPrice = Round(priceIncludingGst * gstRate / (1 + gstRate), 2)
+End Function
+
+
+
++----------+--------------------+---------------------------------------------+
+|Type      |Keyword             |Description                                  |
++----------+--------------------+---------------------------------------------+
+|Suspicious|Hex Strings         |Hex-encoded strings were detected, may be    |
+|          |                    |used to obfuscate strings (option --decode to|
+|          |                    |see all)                                     |
++----------+--------------------+---------------------------------------------+
+
