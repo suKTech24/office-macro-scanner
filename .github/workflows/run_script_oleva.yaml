@@ -1,0 +1,24 @@
+name: Run script
+
+on:
+  push:
+    branches: []
+    
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run inspect_vbaproject script
+        run: |
+          . .venv/bin/activate
+          py scripts_experiments/run_olevba.py samples/documents/suspicious.xlsm

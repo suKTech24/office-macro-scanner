@@ -128,6 +128,17 @@ Static analysis means **reading a file without running it**. The scanner never o
 
 TBAdded
 
+## Tools and Tech
+
+- [oletools](https://github.com/decalage2/oletools) - oletools is a package of python tools to analyze Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office 97-2003 documents, MSI files or Outlook messages, mainly for malware analysis, forensics and debugging. It is based on the olefile parser.
+
+- Install oletools
+    ```
+        uv venv
+        source .venv/Scripts/activate
+        echo "$VIRTUAL_ENV"
+        uv pip install oletools
+    ```
 
 ## Safety
 
@@ -135,3 +146,17 @@ TBAdded
 - The scanner reads files; it never opens them in Office or runs them.
 - VirusTotal lookups send only the SHA-256 hash, never the file.
 - This is a personal learning project, not a production security tool. 
+
+
+## Glossary
+
+- **ole (Object Linking and Embedding)** : At its core, [OLE](https://www.huntress.com/cybersecurity-101/topic/what-is-object-linking-embedding) enables you to integrate content like text, images, charts, and even spreadsheets from different applications into a single document. Whether you're creating a highly detailed report or designing a presentation, OLE keeps your content interactive and cohesive.
+- **Component Object Model** : At the foundation of OLE lies Microsoft’s Component Object Model (COM), which facilitates communication between programs. When you add an OLE object to a document, you preserve its original formatting and functionality. For example, double-clicking an embedded Excel table in Word launches Excel instantly, letting you edit the data.
+
+- **oleid**: to analyze OLE files to detect specific characteristics usually found in malicious files.
+- **olevba**: to extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
+- **MacroRaptor**: to detect malicious VBA Macros
+msodde: to detect and extract DDE/DDEAUTO links from MS Office documents, RTF and CSV
+- **pyxswf**: to detect, extract and analyze Flash objects (SWF) that may be embedded in files such as MS Office documents (e.g. Word, Excel) and RTF, which is especially useful for malware analysis.
+- **oleobj**: to extract embedded objects from OLE files.
+- **rtfobj**: to extract embedded objects from RTF files.
