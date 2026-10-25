@@ -21,4 +21,4 @@ jobs:
       - name: Run inspect_vbaproject script
         run: |
           . .venv/bin/activate
-          python scripts_experiments/run_olevba.py samples/documents/suspicious.xlsm
+          python scripts_experiments/run_olevba.py samples/documents
